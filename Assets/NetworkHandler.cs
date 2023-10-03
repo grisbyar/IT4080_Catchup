@@ -47,20 +47,24 @@ public class NetworkHandler : NetworkBehaviour
     //
         private void ClientOnClientConnected(ulong clientId){
             PrintMe();
-            //if you are the client, you see a message, if not, it says they've connected
-            //if you are the host
-            Debug.Log($"I {clientId} have connected to the server");
-            //print i {clientId} have connected to the server
-            //handle the case when we are the client running on the host
-            //some other client connected
+            //if the client id is the networks managers client id, then it is the same client
+            if (NetworkManager.LocalClientId == clientId){
+                Debug.Log($"I {clientId} have connected to the server.");
+            } else
+            {
+                Debug.Log($"Another {clientId} has connected to the server.");
+            }
         }
 
         private void ClientOnClientDisconnected(ulong clientId){
-            
-             Debug.Log($"I {clientId} have connected to the server");
-            //print i {clientId} have connected to the server
-            //handle the case when we are the client running on the host
-            //some other client connected
+            PrintMe();
+            //same logic applies here
+            if (NetworkManager.LocalClientId == clientId){
+                Debug.Log($"I {clientId} have disconnected from the server.");
+            } else{
+                Debug.Log($"Someone {clientId} has disconnected from the server.");
+            }
+    
         }
 
         private void ClientOnClientStopped(bool indicator){
