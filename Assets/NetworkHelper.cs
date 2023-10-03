@@ -35,7 +35,6 @@ public class NetworkHelper : MonoBehaviour {
 
     }
 
-
     public static void GUILayoutNetworkControls() {
         GUILayout.BeginArea(new Rect(10, 10, 300, 300));
         if (!netMgr.IsClient && !netMgr.IsServer) {
@@ -45,7 +44,6 @@ public class NetworkHelper : MonoBehaviour {
         }
         GUILayout.EndArea();
     }
-
 
     public static string GetNetworkMode() {
         string type = "nothing";
