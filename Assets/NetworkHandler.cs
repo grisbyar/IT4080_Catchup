@@ -26,7 +26,6 @@ public class NetworkHandler : NetworkBehaviour
         }
          if(!IsServer && !IsClient) {
             NetworkHelper.Log("I AM Nothing yet!");
-            hasPrinted = false;
         }
     }
     //

@@ -75,9 +75,9 @@ public class Player : NetworkBehaviour
 
     private bool outOfBounds()
     {
-        Vector3 position = player.position;
+        Vector3 position = GetComponent<PlayerCharacterOne>().position;
    
-        if(positon.x > 10 || position.z > 10 || positon.x < -10 || position.z < -10 || ){
+        if (position.x > 10 || position.z > 10 || position.x < -10 || position.z < -10 ){
             //don't need to check y axis
             return true;
         }
