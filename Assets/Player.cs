@@ -7,13 +7,21 @@ public class Player : NetworkBehaviour
 {
     public float movementSpeed = 50f;
     public float rotationSpeed = 130f;
+    public NetworkVariable<Color> playerColorNetVar = new NetworkVariable<Color>(Color.red);
 
     private Camera playerCamera;
+    private GameObject playerLine; //playerBody
+
+    
     private void Start(){
         playerCamera = transform.Find("Camera").GetComponent<Camera>();
         playerCamera.enabled = IsOwner;
         playerCamera.GetComponent<AudioListener>().enabled = IsOwner;
+    
+        playerLine = transform.Find("Line").gameObject; //Findplayerbody
+        ApplyColor();
     }
+
     // Rotate around the y axis when shift is not pressed
     private Vector3 CalcRotation() {
         bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
@@ -51,18 +59,42 @@ public class Player : NetworkBehaviour
         }
         
     }
- 
+    private void ApplyColor()
+    {
+        playerLine.GetComponent<MeshRenderer>().material.color = playerColorNetVar.Value;
+    }
+
     [ServerRpc]
     private void MoveServerRpc(Vector3 movement, Vector3 rotation){
         transform.Translate(movement);
         transform.Rotate(rotation);
     }
-  
+    // private Vector3 getPlayerPos(){
+        
+    // }
+
+    private bool outOfBounds()
+    {
+        Vector3 position = player.position;
+   
+        if(positon.x > 10 || position.z > 10 || positon.x < -10 || position.z < -10 || ){
+            //don't need to check y axis
+            return true;
+        }
+        return false;
+    }
+    private void returnToStartPos(){
+        player.position = Vector3.zero;
+    }
+
     private void Update()
     {
         if(IsOwner){
             OwnerHandleInput();
         }
-        
+        //checks if anyone but the owner is out of bounds
+        if(!IsOwner && outOfBounds){
+            returnToStartPos();
+        }
     }
 }
