@@ -12,8 +12,7 @@ public class Player : NetworkBehaviour
     private Camera playerCamera;
     private GameObject playerLine; //playerBody
 
-    
-    private void Start(){
+    private void NetworkInit(){
         playerCamera = transform.Find("Camera").GetComponent<Camera>();
         playerCamera.enabled = IsOwner;
         playerCamera.GetComponent<AudioListener>().enabled = IsOwner;
@@ -22,6 +21,17 @@ public class Player : NetworkBehaviour
         ApplyColor();
     }
 
+    private void Start(){
+       NetworkHelper.Log(this, "Start");
+    }
+
+    public override void OnNetworkSpawn(){
+        NetworkHelper.Log(this, "OnNetworkSpawn");
+        NetworkInit();
+        base.OnNetworkSpawn();
+    }
+
+   
     // Rotate around the y axis when shift is not pressed
     private Vector3 CalcRotation() {
         bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
