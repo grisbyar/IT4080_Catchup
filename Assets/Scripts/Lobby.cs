@@ -49,7 +49,7 @@ public class Lobby : NetworkBehaviour
         lobby_UI.playerCards.Clear();
         foreach (NetworkPlayerInfo info in networkedPlayers.allNetPlayers)
         {
-            PlayerCard pc = lobby_UI.playerCards.AddCard("Some player");
+            PlayerCard pc = lobby_UI.playerCards.AddCard("Player");
             pc.ready = info.ready;
             pc.color = info.color;
             pc.clientId = info.clientId;
