@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:TextField picking-mode="Ignore" label="Change Name" value="Enter Name" text="filler text" />
+    <ui:VisualElement style="height: 66px; width: 343px; justify-content: flex-end; flex-direction: row;" />
+    <ui:Button text="&lt;" display-tooltip-when-elided="true" style="height: 15px; width: 167px;" />
+    <ui:Button text="&gt;" display-tooltip-when-elided="true" style="height: 18px; width: 165px; right: auto; left: 174px; position: relative; top: 20px;" />
+    <ui:Button text="Start" display-tooltip-when-elided="true" style="bottom: 0; right: 0; top: 300px; left: 0; position: absolute;" />
+</ui:UXML>
