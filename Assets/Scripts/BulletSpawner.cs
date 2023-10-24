@@ -28,7 +28,7 @@ public class BulletSpawner : NetworkBehaviour
         Rigidbody newBullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
         newBullet.velocity = transform.forward * bulletSpeed;
         newBullet.gameObject.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
-        Destroy(newBullet.gameObject, 3);
+        Destroy(newBullet.gameObject, 2);
 
         shotCountDown = timeBetweenBullets;
     }
